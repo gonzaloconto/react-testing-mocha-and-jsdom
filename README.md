@@ -1,1 +1,2 @@
-# react-testing-mocha-and-jsdom
+#npm install
+#npm run test
