@@ -4,34 +4,40 @@ import assert from 'assert';
 import CountriesModel from '../../common/modules/CountriesModel';
 //const TestUtils = React.addons.TestUtils;
 
-describe('Countries Model default init', () => {
-    let countriesModel = {};
+describe('Countries Model', () => {
 
-    before('init countries model', () => {
-        countriesModel = new CountriesModel();
+    describe("Initialization", () => {
+
+        describe("Default", () => {
+            let countriesModel = {};
+            beforeEach( () => {
+                countriesModel = new CountriesModel();
+            });
+            it('countries must not be empty', () => {
+                assert(Object.keys(countriesModel.get('countries')).length > 0);
+            });
+        });
+
+        describe('With Empty Country Parametter', () => {
+            let countriesModel = {};
+            beforeEach( () => {
+              countriesModel = new CountriesModel({add_empty_element: true});
+            });
+
+            it('countries must not be empty', () => {
+              assert(Object.keys(countriesModel.get('countries')).length > 0);
+            });
+
+            it('empty element exists', () => {
+              assert(countriesModel.get('countries').none !== undefined);
+            });
+        });
+
     });
 
-    it('countries must not be empty', () => {
-        assert(Object.keys(countriesModel.get('countries')).length > 0);
-    });
 });
 
 
-describe('Countries Model with empty country', () => {
-    let countriesModel = {};
-
-    before('init countries model', () => {
-        countriesModel = new CountriesModel({add_empty_element: true});
-    });
-
-    it('countries with "empty element" must not be empty', () => {
-        assert(Object.keys(countriesModel.get('countries')).length > 0);
-    });
-
-    it('empty element exists', () => {
-        assert(countriesModel.get('countries').none !== undefined);
-    });
-});
 /*
 describe('Dropdown component', function(){
     before('render and locate element', function() {
