@@ -9,20 +9,22 @@
     ]
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-register"
+    "test": "mocha test/**/*.spec.js"
   },
   "author": "Gonzalo Conto Grobly <gonzalo.conto@etermax.com>",
   "license": "MIT",
   "devDependencies": {
+    "babel": "^5.1.13",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
-    "react-addons-test-utils": "^15.1.0",
     "babel-register": "^6.9.0",
-    "babel": "^5.1.13",
+    "backbone": "1.2.3",
     "jsdom": "^2.0.0",
     "mocha": "^2.1.0",
-    "backbone": "1.2.3",
-    "react-tools": "^0.12.1"
+    "react-addons-test-utils": "^15.1.0",
+    "react-tools": "^0.12.1",
+    "should": "^9.0.0",
+    "underscore": "^1.8.3"
   },
   "dependencies": {
     "react": "^0.12.1"

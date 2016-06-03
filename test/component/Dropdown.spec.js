@@ -1,17 +1,35 @@
-import React from 'react/addons';
+//import React from 'react/addons';
 import assert from 'assert';
-import Dropdown from '../../common/components/Dropdown';
+//import Dropdown from '../../common/components/Dropdown';
 import CountriesModel from '../../common/modules/CountriesModel';
-const TestUtils = React.addons.TestUtils;
+//const TestUtils = React.addons.TestUtils;
 
-describe('Countries Model initiated', () => {
-    console.log("LLEGOOOOOOOOOOOOOOOOOOOOOO!");
+describe('Countries Model default init', () => {
+    let countriesModel = {};
+
     before('init countries model', () => {
-        this.countriesModel = new CountriesModel();
+        countriesModel = new CountriesModel();
     });
 
     it('countries must not be empty', () => {
-        assert(this.countriesModel.get('countries').length > 0);
+        assert(Object.keys(countriesModel.get('countries')).length > 0);
+    });
+});
+
+
+describe('Countries Model with empty country', () => {
+    let countriesModel = {};
+
+    before('init countries model', () => {
+        countriesModel = new CountriesModel({add_empty_element: true});
+    });
+
+    it('countries with "empty element" must not be empty', () => {
+        assert(Object.keys(countriesModel.get('countries')).length > 0);
+    });
+
+    it('empty element exists', () => {
+        assert(countriesModel.get('countries').none !== undefined);
     });
 });
 /*

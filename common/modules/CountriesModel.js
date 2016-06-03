@@ -1,5 +1,6 @@
 import Backbone from 'backbone';
 import countries from '../static/countries';
+import _ from 'underscore';
 let   countriesModel;
 
 /*
@@ -10,7 +11,7 @@ countriesModel = Backbone.Model.extend({
     defaults: {
         static_data: countries,
         selected_indexes: [],
-        countries: {},
+        countries: countries,
         add_empty_element: false
     },
     initialize: function () {
