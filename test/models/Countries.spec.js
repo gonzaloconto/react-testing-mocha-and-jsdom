@@ -6,8 +6,10 @@ import CountriesModel from '../../common/modules/CountriesModel';
 //const TestUtils = React.addons.TestUtils;
 
 describe('Countries Model', () => {
+
     describe("Type Of Model?", () => {
         let countriesModel = {};
+
         beforeEach( () => {
           countriesModel = new CountriesModel();
         })
@@ -15,12 +17,14 @@ describe('Countries Model', () => {
         it('Backbone Model', () => {
           assert(countriesModel instanceof Backbone.Model);
         })
+
     })
 
     describe("Initialization", () => {
 
         describe("Default", () => {
             let countriesModel = {};
+
             beforeEach( () => {
                 countriesModel = new CountriesModel();
             })
