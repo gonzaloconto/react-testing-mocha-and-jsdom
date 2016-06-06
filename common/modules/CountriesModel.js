@@ -1,32 +1,35 @@
 import Backbone from 'backbone';
 import countries from '../static/countries';
 import _ from 'underscore';
-let   countriesModel;
+import utils from '../utils'
 
 /*
  * Countries Model
  * */
 
-countriesModel = Backbone.Model.extend({
+module.exports = Backbone.Model.extend({
     defaults: {
         static_data: countries,
+        default_language: 'EN',
         selected_indexes: [],
-        countries: countries,
+        countries: [],
         add_empty_element: false
     },
     initialize: function () {
         if (this.get('add_empty_element')) {
-            this.set('countries', _.extend(this.get('countries'), {
-                "none": "---"
+            this.set('static_data', _.extend(this.get('static_data'), {
+              "none": "---"
             }));
         }
+
+        this.order();
     },
     /**
      * Gets the languages list, in the way we need
      */
     getParsedLanguages: function () {
         //TODO
-        var countries = _.clone(this.get('countries')),
+        var countries = _.clone(this.get('static_data')),
             auxObj = {},
             obtainedValue = '',
             obtainedKey;
@@ -52,7 +55,7 @@ countriesModel = Backbone.Model.extend({
      */
     localize: function () {
         //TODO
-        this.set('countries', this.getParsedLanguages());
+        this.set('static_data', this.getParsedLanguages());
         this.order();
     },
     /**
@@ -61,15 +64,15 @@ countriesModel = Backbone.Model.extend({
     order: function () {
         //TODO
         var
-            countries = _.clone(this.get('countries')),
+            countries = _.clone(this.get('static_data')),
             content = utils.orderObjectByValue(countries);
 
-        this.set('content', content);
+        this.set('countries', content);
 
-        this.setSelectedCountries();
+       /* this.setSelectedCountries();
         this.refreshSelectedOptionsIndexes();
 
-        this.trigger('reordered');
+        this.trigger('reordered');*/
     },
     setSelectedItems: function (keys) {
         //TODO
@@ -116,4 +119,3 @@ countriesModel = Backbone.Model.extend({
         return _.difference(ctries, this.get('countriesKeys'));
     }
 });
-module.exports = countriesModel;

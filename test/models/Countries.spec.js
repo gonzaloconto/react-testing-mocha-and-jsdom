@@ -1,6 +1,6 @@
 //import React from 'react/addons';
 import Backbone from 'backbone';
-import assert from 'assert';
+import { assert, expect } from 'chai';
 //import Dropdown from '../../common/components/Dropdown';
 import CountriesModel from '../../common/modules/CountriesModel';
 //const TestUtils = React.addons.TestUtils;
@@ -33,6 +33,14 @@ describe('Countries Model', () => {
                 assert(Object.keys(countriesModel.get('countries')).length > 0);
             })
 
+            it('Valid default params', () => {
+                assert.typeOf(countriesModel.defaults.static_data, 'object');
+                assert.typeOf(countriesModel.defaults.default_language, 'string');
+                assert.typeOf(countriesModel.defaults.selected_indexes, 'array');
+                assert.typeOf(countriesModel.defaults.countries, 'array');
+                assert.typeOf(countriesModel.defaults.add_empty_element, 'boolean');
+            });
+
         })
 
         describe('With Empty Country Parametter', () => {
@@ -47,7 +55,10 @@ describe('Countries Model', () => {
             })
 
             it('empty element exists', () => {
-              assert(countriesModel.get('countries').none !== undefined);
+              let emptyElementSearchResult = countriesModel.get('countries').filter(function( obj ) {
+                  return obj.key == 'none';
+              });
+              assert(emptyElementSearchResult.length > 0);
             })
 
         })

@@ -1,4 +1,5 @@
 var jsdom = require('jsdom');
+var jquery = require('jquery');
 
 // setup the simplest document possible
 var doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
@@ -10,7 +11,7 @@ var win = doc.defaultView;
 // natural in the test environment
 global.document = doc;
 global.window = win;
-
+global.jQuery = global.$ = jquery;
 // take all properties of the window object and also attach it to the
 // mocha global object
 propagateToGlobal(win);
